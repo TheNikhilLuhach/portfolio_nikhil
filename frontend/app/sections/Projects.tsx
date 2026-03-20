@@ -26,11 +26,20 @@ const techColors: Record<string, string> = {
   FastAPI: 'bg-teal-500/20 text-teal-300 border-teal-500/30',
   Docker: 'bg-blue-600/20 text-blue-400 border-blue-600/30',
   AWS: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+  'AWS EC2': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
   Automation: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
   'Machine Learning': 'bg-pink-500/20 text-pink-300 border-pink-500/30',
   AI: 'bg-rose-500/20 text-rose-300 border-rose-500/30',
+  'Generative AI tools': 'bg-rose-500/20 text-rose-300 border-rose-500/30',
   Security: 'bg-red-500/20 text-red-300 border-red-500/30',
   'Computer Vision': 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
+  OpenCV: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
+  SMTP: 'bg-blue-400/20 text-blue-200 border-blue-400/30',
+  'Automation Scripts': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+  'Web Interface': 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+  HTML: 'bg-orange-600/20 text-orange-400 border-orange-600/30',
+  CSS: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+  Linux: 'bg-gray-400/20 text-gray-200 border-gray-400/30',
 };
 
 function getTechColor(tech: string): string {
@@ -71,6 +80,25 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {project.description}
         </p>
 
+        {/* Features */}
+        {project.features && (
+          <div className="mb-4">
+            <ul className="space-y-1">
+              {project.features.slice(0, 3).map((feature: string, idx: number) => (
+                <li key={idx} className="flex items-start gap-2 text-gray-400 text-xs">
+                  <span className="w-1 h-1 rounded-full bg-accent-cyan mt-1.5 flex-shrink-0" />
+                  <span className="line-clamp-1">{feature}</span>
+                </li>
+              ))}
+              {project.features.length > 3 && (
+                <li className="text-gray-500 text-xs italic">
+                  +{project.features.length - 3} more features
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+
         {/* Tech Stack */}
         <div className="flex flex-wrap gap-2 mb-6">
           {project.tech.slice(0, 4).map((tech) => (
@@ -100,7 +128,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-dark-700 hover:bg-dark-600 text-gray-300 hover:text-white transition-all text-sm font-medium"
             >
               <Github className="w-4 h-4" />
-              Code
+              GitHub
             </motion.a>
           )}
           {project.liveLink && (
@@ -113,8 +141,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white text-sm font-medium hover:shadow-lg hover:shadow-accent-cyan/25 transition-all"
             >
               <ExternalLink className="w-4 h-4" />
-              Live Demo
+              View Project
             </motion.a>
+          )}
+          {!project.liveLink && (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              disabled
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-dark-800/50 text-gray-500 text-sm font-medium cursor-not-allowed"
+            >
+              <ExternalLink className="w-4 h-4" />
+              View Project
+            </motion.button>
           )}
         </div>
       </div>
