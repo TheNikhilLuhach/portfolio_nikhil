@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "frontend/package.json",
-      "use": "@vercel/next",
-      "config": {
-        "distDir": ".next"
-      }
+      "use": "@vercel/next"
     }
   ],
   "routes": [
@@ -19,7 +16,22 @@
       "dest": "/backend/projects/$1"
     }
   ],
+  "functions": {
+    "api/projects.js": {
+      "maxDuration": 10
+    },
+    "api/skills.js": {
+      "maxDuration": 10
+    },
+    "api/experience.js": {
+      "maxDuration": 10
+    },
+    "api/projects/[...path].js": {
+      "maxDuration": 10
+    }
+  },
   "env": {
     "NODE_ENV": "production"
-  }
+  },
+  "framework": "nextjs"
 }
