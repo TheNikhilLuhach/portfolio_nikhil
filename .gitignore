@@ -33,6 +33,9 @@ Thumbs.db
 out/
 dist/
 
-# Ignore build files
-build/
-*.build
+# Ignore old project folders
+frontend/
+backend/
+project_copy/
+api/
+static/
