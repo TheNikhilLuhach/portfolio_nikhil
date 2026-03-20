@@ -1,6 +1,7 @@
 export interface Project {
   id: number;
   name: string;
+  folder: string;
   description: string;
   tech: string[];
   features?: string[];

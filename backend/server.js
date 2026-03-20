@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Serve static project files
+app.use('/projects', express.static(path.join(__dirname, 'projects')));
+
 // Import routes
 const projectRoutes = require('./routes/projects');
 const skillRoutes = require('./routes/skills');

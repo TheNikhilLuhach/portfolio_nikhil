@@ -141,7 +141,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white text-sm font-medium hover:shadow-lg hover:shadow-accent-cyan/25 transition-all"
             >
               <ExternalLink className="w-4 h-4" />
-              View Project
+              Live Demo
             </motion.a>
           )}
           {!project.liveLink && (
@@ -152,7 +152,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-dark-800/50 text-gray-500 text-sm font-medium cursor-not-allowed"
             >
               <ExternalLink className="w-4 h-4" />
-              View Project
+              Live Demo
             </motion.button>
           )}
         </div>
@@ -167,6 +167,8 @@ export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const displayedProjects = showAll ? projects : projects.slice(0, 4);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -286,19 +288,50 @@ export default function Projects() {
               transition={{ delay: 0.5 }}
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
-              {projects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
-              ))}
+              <AnimatePresence>
+                {displayedProjects.map((project, index) => (
+                  <ProjectCard key={project.id} project={project} index={index} />
+                ))}
+              </AnimatePresence>
             </motion.div>
           )}
 
-          {/* View More */}
-          {!loading && (
+          {/* Show More/Less Button */}
+          {!loading && projects.length > 4 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
               className="text-center mt-12"
+            >
+              <motion.button
+                onClick={() => setShowAll(!showAll)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-8 py-4 glass rounded-full text-gray-300 hover:text-white hover:border-accent-cyan/50 transition-all"
+              >
+                {showAll ? (
+                  <>
+                    Show Less
+                    <span className="text-accent-cyan">▲</span>
+                  </>
+                ) : (
+                  <>
+                    Show More
+                    <span className="text-accent-cyan">▼</span>
+                  </>
+                )}
+              </motion.button>
+            </motion.div>
+          )}
+
+          {/* View More on GitHub */}
+          {!loading && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="text-center mt-6"
             >
               <motion.a
                 href="https://github.com/TheNikhilLuhach"

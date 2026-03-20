@@ -2,8 +2,9 @@
   {
     "id": 1,
     "name": "Smart Automation & Intrusion Detection System",
-    "description": "A multi-functional automation system designed to automate communication tasks and enhance system security using event-driven triggers.",
-    "tech": ["Python", "OpenCV", "SMTP", "Automation Scripts", "Web Interface"],
+    "folder": "automation-intrusion-system",
+    "description": "A multi-functional automation and security system that performs communication tasks and detects unauthorized access by capturing images on failed login attempts and sending alerts via email.",
+    "tech": ["Python", "OpenCV", "SMTP", "Flask"],
     "features": [
       "Email automation system",
       "WhatsApp message scheduling",
@@ -12,59 +13,63 @@
       "Sends alert via email",
       "Web-based control interface"
     ],
-    "liveLink": "",
+    "liveLink": "/projects/automation-intrusion-system",
     "githubLink": "https://github.com/TheNikhilLuhach"
   },
   {
     "id": 2,
-    "name": "Python Automation Dashboard",
-    "description": "A web-based dashboard that allows users to control automation scripts through an interactive interface.",
+    "name": "Web-Based Automation Control Panel",
+    "folder": "automation-dashboard",
+    "description": "A dashboard that allows users to trigger and manage automation scripts through a web interface instead of command line.",
     "tech": ["Python", "Flask", "HTML", "CSS"],
     "features": [
       "UI-based automation control",
       "Backend integration with Python scripts",
       "Button-triggered task execution"
     ],
-    "liveLink": "",
+    "liveLink": "/projects/automation-dashboard",
     "githubLink": "https://github.com/TheNikhilLuhach"
   },
   {
     "id": 3,
-    "name": "AWS Cloud Deployment Project",
-    "description": "Deployed and managed applications on AWS cloud infrastructure using Linux-based environments.",
+    "name": "Cloud Deployment & Server Management System",
+    "folder": "cloud-deployment",
+    "description": "Deployed and managed applications on AWS cloud infrastructure with hands-on server management and Linux operations.",
     "tech": ["AWS EC2", "Linux"],
     "features": [
       "EC2 instance setup",
       "Remote server management",
       "Application deployment"
     ],
-    "liveLink": "",
+    "liveLink": "/projects/cloud-deployment",
     "githubLink": "https://github.com/TheNikhilLuhach"
   },
   {
     "id": 4,
-    "name": "Frontend Web Development Projects",
-    "description": "A collection of responsive and user-friendly frontend projects focusing on UI design and layout.",
+    "name": "Responsive Web UI Projects Collection",
+    "folder": "frontend-ui",
+    "description": "A collection of responsive frontend projects focused on UI design, layout structuring, and user experience.",
     "tech": ["HTML", "CSS", "JavaScript"],
     "features": [
       "Responsive design",
       "Clean UI layouts",
       "Mobile optimization"
     ],
-    "liveLink": "",
+    "liveLink": "/projects/frontend-ui",
     "githubLink": "https://github.com/TheNikhilLuhach"
   },
   {
     "id": 5,
-    "name": "Generative AI Practice Projects",
-    "description": "Explored generative AI concepts by building small use-case-based implementations and automation workflows.",
+    "name": "Generative AI Workflow Implementations",
+    "folder": "ai-workflows",
+    "description": "Built AI-based workflows using prompt engineering and automation concepts for real-world use cases.",
     "tech": ["Python", "Generative AI tools"],
     "features": [
       "Prompt-based AI interaction",
       "AI-assisted automation logic",
       "Basic model integration"
     ],
-    "liveLink": "",
+    "liveLink": "/projects/ai-workflows",
     "githubLink": "https://github.com/TheNikhilLuhach"
   }
 ]

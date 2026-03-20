@@ -32,7 +32,7 @@ const contactLinks = [
     icon: Linkedin,
     label: 'LinkedIn',
     value: 'Nikhil Kumar',
-    href: '#',
+    href: 'https://www.linkedin.com/in/nikhil-kumar-692116203',
     color: 'from-blue-600 to-blue-800',
   },
   {
