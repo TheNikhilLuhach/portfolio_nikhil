@@ -229,7 +229,7 @@ export default function Hero() {
           >
             {[
               { icon: Github, href: 'https://github.com/TheNikhilLuhach', label: 'GitHub' },
-              { icon: Linkedin, href: '#', label: 'LinkedIn' },
+              { icon: Linkedin, href: 'https://www.linkedin.com/in/nikhil-kumar-692116203', label: 'LinkedIn' },
               { icon: Terminal, href: '#', label: 'Blog' },
               { icon: Shield, href: '#', label: 'Security' },
               { icon: Cloud, href: '#', label: 'Cloud' },
