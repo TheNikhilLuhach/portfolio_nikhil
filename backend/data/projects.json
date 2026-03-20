@@ -1,75 +1,85 @@
 [
   {
     "id": 1,
-    "name": "Smart Automation & Intrusion Detection System",
-    "folder": "automation-intrusion-system",
-    "description": "A multi-functional automation and security system that performs communication tasks and detects unauthorized access by capturing images on failed login attempts and sending alerts via email.",
-    "tech": ["Python", "OpenCV", "SMTP", "Flask"],
+    "name": "Hand Gesture Control System",
+    "folder": "hand-gesture-control",
+    "description": "A computer vision application that enables touchless computer control through hand gestures. Uses MediaPipe for hand tracking and supports custom gesture recognition for various system commands.",
+    "tech": ["Python", "OpenCV", "MediaPipe", "Computer Vision"],
     "features": [
-      "Email automation system",
-      "WhatsApp message scheduling",
-      "Email scheduling",
-      "Security feature: Captures image on wrong password attempt",
-      "Sends alert via email",
-      "Web-based control interface"
+      "Real-time hand gesture detection",
+      "Application launcher integration",
+      "Custom gesture commands",
+      "Webcam-based control system",
+      "2-second cooldown for accuracy"
     ],
-    "liveLink": "/projects/automation-intrusion-system",
+    "liveLink": "/projects/hand-gesture-control",
     "githubLink": "https://github.com/TheNikhilLuhach"
   },
   {
     "id": 2,
-    "name": "Web-Based Automation Control Panel",
-    "folder": "automation-dashboard",
-    "description": "A dashboard that allows users to trigger and manage automation scripts through a web interface instead of command line.",
-    "tech": ["Python", "Flask", "HTML", "CSS"],
+    "name": "Tech2Idea AI Chatbot",
+    "folder": "tech2idea-chatbot",
+    "description": "A conversational AI assistant that helps transform technical skills into unique project ideas using Google's Gemini AI with an interactive Streamlit interface.",
+    "tech": ["Python", "Streamlit", "Google Gemini AI", "NLP"],
     "features": [
-      "UI-based automation control",
-      "Backend integration with Python scripts",
-      "Button-triggered task execution"
+      "Interactive chat interface",
+      "Personalized project suggestions",
+      "Technology recommendations",
+      "Session management",
+      "Real-time AI responses"
     ],
-    "liveLink": "/projects/automation-dashboard",
+    "liveLink": "/projects/tech2idea-chatbot",
     "githubLink": "https://github.com/TheNikhilLuhach"
   },
   {
     "id": 3,
-    "name": "Cloud Deployment & Server Management System",
-    "folder": "cloud-deployment",
-    "description": "Deployed and managed applications on AWS cloud infrastructure with hands-on server management and Linux operations.",
-    "tech": ["AWS EC2", "Linux"],
+    "name": "CareerPilot Platform",
+    "folder": "careerpilot-platform",
+    "description": "A comprehensive career development platform featuring AI resume building, job search, career guidance, and technical assessments for job seekers and professionals.",
+    "tech": ["Python", "Flask", "SQLAlchemy", "Tailwind CSS", "AI"],
     "features": [
-      "EC2 instance setup",
-      "Remote server management",
-      "Application deployment"
+      "AI-powered resume builder",
+      "Career guidance system",
+      "Job portal with tracking",
+      "Technical skill assessment",
+      "ATS optimization",
+      "Multiple export formats"
     ],
-    "liveLink": "/projects/cloud-deployment",
+    "liveLink": "/projects/careerpilot-platform",
     "githubLink": "https://github.com/TheNikhilLuhach"
   },
   {
     "id": 4,
-    "name": "Responsive Web UI Projects Collection",
-    "folder": "frontend-ui",
-    "description": "A collection of responsive frontend projects focused on UI design, layout structuring, and user experience.",
-    "tech": ["HTML", "CSS", "JavaScript"],
+    "name": "StudySync Learning Hub",
+    "folder": "studysync-learning",
+    "description": "An AI-powered educational platform combining real-time video collaboration, interactive whiteboards, and intelligent study assistance for enhanced group learning.",
+    "tech": ["Python", "Flask", "WebRTC", "OpenAI API", "HTML5", "CSS3"],
     "features": [
-      "Responsive design",
-      "Clean UI layouts",
-      "Mobile optimization"
+      "Real-time video conferencing",
+      "Collaborative whiteboard",
+      "AI study assistant",
+      "Book scanning with OCR",
+      "Question bank generator",
+      "Shared notes system"
     ],
-    "liveLink": "/projects/frontend-ui",
+    "liveLink": "/projects/studysync-learning",
     "githubLink": "https://github.com/TheNikhilLuhach"
   },
   {
     "id": 5,
-    "name": "Generative AI Workflow Implementations",
-    "folder": "ai-workflows",
-    "description": "Built AI-based workflows using prompt engineering and automation concepts for real-world use cases.",
-    "tech": ["Python", "Generative AI tools"],
+    "name": "Voice-Controlled Automation Menu",
+    "folder": "voice-automation-menu",
+    "description": "A sophisticated voice-controlled automation system that manages file operations, launches applications, and provides hands-free computer control through natural language commands.",
+    "tech": ["Python", "Speech Recognition", "NLP", "Automation", "Streamlit"],
     "features": [
-      "Prompt-based AI interaction",
-      "AI-assisted automation logic",
-      "Basic model integration"
+      "Voice command recognition",
+      "File management system",
+      "Application launcher",
+      "Natural language processing",
+      "Interactive voice menu",
+      "Hands-free control"
     ],
-    "liveLink": "/projects/ai-workflows",
+    "liveLink": "/projects/voice-automation-menu",
     "githubLink": "https://github.com/TheNikhilLuhach"
   }
 ]
