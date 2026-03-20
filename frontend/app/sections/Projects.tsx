@@ -8,8 +8,9 @@ import {
   Layers, 
   Loader2,
   Folder,
-  Code,
-  Sparkles
+  Sparkles,
+  Play,
+  X
 } from 'lucide-react';
 import { getProjects, Project } from '@/app/services/api';
 
@@ -49,7 +50,7 @@ function getTechColor(tech: string): string {
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const [isHovered, setIsHovered] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
   return (
     <motion.div
@@ -57,12 +58,51 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.1, duration: 0.6 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className="group relative glass rounded-2xl overflow-hidden hover:border-accent-cyan/30 transition-all duration-500"
     >
       {/* Glow Effect */}
-      <div className={`absolute inset-0 bg-gradient-to-br from-accent-cyan/10 to-accent-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+      <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/10 to-accent-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      {/* Preview Modal */}
+      <AnimatePresence>
+        {showPreview && project.liveLink && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-20 flex flex-col bg-dark-900/98 backdrop-blur-sm rounded-2xl"
+          >
+            <div className="flex items-center justify-between p-4 border-b border-dark-600">
+              <span className="text-sm font-medium text-accent-cyan">Project Preview</span>
+              <motion.button
+                onClick={() => setShowPreview(false)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-2 rounded-lg hover:bg-dark-700 text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </motion.button>
+            </div>
+            <div className="flex-1 min-h-0 p-4">
+              <iframe
+                src={project.liveLink}
+                title={`${project.name} preview`}
+                className="w-full h-full min-h-[280px] rounded-xl border border-dark-600 bg-dark-800"
+                sandbox="allow-scripts allow-same-origin"
+              />
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-gradient-to-r from-accent-cyan to-accent-purple text-white text-sm font-medium hover:opacity-90 transition-opacity"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Open Full Demo
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       
       <div className="relative p-6">
         {/* Icon */}
@@ -117,43 +157,56 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
 
         {/* Links */}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-2">
+          {project.liveLink && (
+            <>
+              <motion.button
+                onClick={() => setShowPreview(true)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-dark-700 hover:bg-accent-cyan/20 border border-accent-cyan/30 text-accent-cyan text-sm font-medium transition-all"
+              >
+                <Play className="w-3.5 h-3.5" />
+                Preview
+              </motion.button>
+              <motion.a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white text-sm font-medium hover:shadow-lg hover:shadow-accent-cyan/25 transition-all"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                Live Demo
+              </motion.a>
+            </>
+          )}
           {project.githubLink && (
             <motion.a
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-dark-700 hover:bg-dark-600 text-gray-300 hover:text-white transition-all text-sm font-medium"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-dark-700 hover:bg-dark-600 text-gray-300 hover:text-white transition-all text-sm font-medium"
             >
-              <Github className="w-4 h-4" />
+              <Github className="w-3.5 h-3.5" />
               GitHub
             </motion.a>
           )}
-          {project.liveLink && (
+          {!project.liveLink && project.githubLink && (
             <motion.a
-              href={project.liveLink}
+              href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white text-sm font-medium hover:shadow-lg hover:shadow-accent-cyan/25 transition-all"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-dark-800/50 text-gray-500 text-sm font-medium"
             >
-              <ExternalLink className="w-4 h-4" />
-              Live Demo
+              <Github className="w-3.5 h-3.5" />
+              View on GitHub
             </motion.a>
-          )}
-          {!project.liveLink && (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              disabled
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-dark-800/50 text-gray-500 text-sm font-medium cursor-not-allowed"
-            >
-              <ExternalLink className="w-4 h-4" />
-              Live Demo
-            </motion.button>
           )}
         </div>
       </div>
@@ -179,38 +232,42 @@ export default function Projects() {
         setError(null);
       } catch (err) {
         setError('Failed to load projects. Please try again later.');
-        // Fallback data
+        // Fallback data (with live demo links)
         setProjects([
           {
             id: 1,
-            name: 'Python Automation Tool',
-            description: 'A comprehensive automation suite for email processing, WhatsApp messaging, and security task automation with scheduling capabilities.',
-            tech: ['Python', 'Automation', 'Security'],
-            liveLink: '',
+            name: 'Hand Gesture Control System',
+            folder: 'hand-gesture-control',
+            description: 'Computer vision application that enables touchless control using hand gestures and MediaPipe.',
+            tech: ['Python', 'Computer Vision', 'AI', 'OpenCV'],
+            liveLink: '/projects/hand-gesture-control',
             githubLink: 'https://github.com/TheNikhilLuhach',
           },
           {
             id: 2,
-            name: 'Hand Gesture Control',
-            description: 'Computer vision application that enables touchless control of computer functions using hand gestures and MediaPipe.',
-            tech: ['Python', 'Computer Vision', 'AI', 'OpenCV'],
-            liveLink: '',
+            name: 'Tech2Idea AI Chatbot',
+            folder: 'tech2idea-chatbot',
+            description: 'AI assistant that transforms technical skills into unique project ideas using Google Gemini.',
+            tech: ['Python', 'Streamlit', 'AI', 'NLP'],
+            liveLink: '/projects/tech2idea-chatbot',
             githubLink: 'https://github.com/TheNikhilLuhach',
           },
           {
             id: 3,
-            name: 'Voice Command System',
-            description: 'Voice-controlled automation system for hands-free computer operation using speech recognition and NLP.',
+            name: 'Voice Automation Menu',
+            folder: 'voice-automation-menu',
+            description: 'Voice-controlled automation system for hands-free computer operation using speech recognition.',
             tech: ['Python', 'AI', 'Automation', 'NLP'],
-            liveLink: '',
+            liveLink: '/projects/voice-automation-menu',
             githubLink: 'https://github.com/TheNikhilLuhach',
           },
           {
             id: 4,
-            name: 'AI Resume Builder',
-            description: 'Next-generation resume builder with AI-powered content suggestions and modern template designs.',
-            tech: ['React', 'Node', 'AI', 'MongoDB'],
-            liveLink: '',
+            name: 'CareerPilot Platform',
+            folder: 'careerpilot-platform',
+            description: 'AI resume builder with job search, career guidance, and technical assessments.',
+            tech: ['Python', 'Flask', 'AI', 'SQLAlchemy'],
+            liveLink: '/projects/careerpilot-platform',
             githubLink: 'https://github.com/TheNikhilLuhach',
           },
         ]);

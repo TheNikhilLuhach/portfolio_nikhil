@@ -5,14 +5,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/:path*`,
-      },
-    ];
-  },
+  // API routes are served by Next.js app/api/ - no rewrites needed for Vercel
   // Production optimizations for Vercel
   compress: true,
   poweredByHeader: false,

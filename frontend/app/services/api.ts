@@ -9,11 +9,12 @@ export interface Project {
   githubLink: string;
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+// Use empty string for same-origin (Vercel/Next.js API routes), or set NEXT_PUBLIC_API_URL for external backend
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? '';
 
 export async function getProjects(): Promise<Project[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/projects`);
+    const response = await fetch(`${API_BASE_URL}/api/projects`, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error('Failed to fetch projects');
     }
@@ -26,7 +27,7 @@ export async function getProjects(): Promise<Project[]> {
 
 export async function getSkills() {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/skills`);
+    const response = await fetch(`${API_BASE_URL}/api/skills`, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error('Failed to fetch skills');
     }
@@ -39,7 +40,7 @@ export async function getSkills() {
 
 export async function getExperience() {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/experience`);
+    const response = await fetch(`${API_BASE_URL}/api/experience`, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error('Failed to fetch experience');
     }
