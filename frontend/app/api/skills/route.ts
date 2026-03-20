@@ -1,20 +1,9 @@
 import { NextResponse } from 'next/server';
-import path from 'path';
-import fs from 'fs';
+import skillsData from '@/data/skills.json';
 
 export async function GET() {
   try {
-    const dataPath = path.join(process.cwd(), 'data', 'skills.json');
-    
-    if (!fs.existsSync(dataPath)) {
-      return NextResponse.json(
-        { error: 'Skills data not found' },
-        { status: 500 }
-      );
-    }
-    
-    const skills = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-    return NextResponse.json(skills);
+    return NextResponse.json(skillsData);
   } catch (error) {
     console.error('Skills API Error:', error);
     return NextResponse.json(

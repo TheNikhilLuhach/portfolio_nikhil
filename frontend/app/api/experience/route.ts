@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import path from 'path';
-import fs from 'fs';
+import experienceData from '@/data/experience.json';
 
 export const dynamic = 'force-dynamic';
 
@@ -8,17 +7,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
-    
-    const dataPath = path.join(process.cwd(), 'data', 'experience.json');
-    
-    if (!fs.existsSync(dataPath)) {
-      return NextResponse.json(
-        { error: 'Experience data not found' },
-        { status: 500 }
-      );
-    }
-    
-    const experience = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    const experience = experienceData as { id: number }[];
     
     if (id) {
       const exp = experience.find((e: { id: number }) => e.id === parseInt(id));
@@ -28,7 +17,7 @@ export async function GET(request: Request) {
       return NextResponse.json(exp);
     }
     
-    return NextResponse.json(experience);
+    return NextResponse.json(experienceData);
   } catch (error) {
     console.error('Experience API Error:', error);
     return NextResponse.json(

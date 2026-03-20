@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import path from 'path';
-import fs from 'fs';
+import projectsData from '@/data/projects.json';
 
 export const dynamic = 'force-dynamic';
 
@@ -8,17 +7,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
-    
-    const dataPath = path.join(process.cwd(), 'data', 'projects.json');
-    
-    if (!fs.existsSync(dataPath)) {
-      return NextResponse.json(
-        { error: 'Projects data not found' },
-        { status: 500 }
-      );
-    }
-    
-    const projects = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    const projects = projectsData as { id: number }[];
     
     if (id) {
       const project = projects.find((p: { id: number }) => p.id === parseInt(id));
